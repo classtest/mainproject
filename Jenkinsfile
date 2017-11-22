@@ -1,5 +1,5 @@
 pipeline {
-    agent { node { label 'jdk8 && git && npm && yarn' } }
+   // agent { node { label 'jdk8 && git && npm && yarn' } }
     options {
         buildDiscarder(logRotator(numToKeepStr:'20'))
         disableConcurrentBuilds()
