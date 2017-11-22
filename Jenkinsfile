@@ -10,8 +10,8 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    currentBuild.displayName = "TestJob-b${BUILD_NUMBER}-${GIT_REVISION,length=8}"
-                    currentBuild.description = "This job is to test b${BUILD_NUMBER}-${GIT_COMMIT,length=8}."
+                    currentBuild.displayName = "TestJob-b${BUILD_NUMBER}"
+                    //currentBuild.description = "This job is to test b${BUILD_NUMBER}-${GIT_COMMIT,length=8}."
                 }
 	     }
 	  }
