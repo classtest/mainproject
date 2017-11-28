@@ -19,8 +19,9 @@
 //	}
 //}
 
-pipeline {
-    stages {
+node {
+   
+   stages {
         stage("Build"){
             steps {
                 script {
