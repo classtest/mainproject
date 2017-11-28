@@ -19,7 +19,8 @@
 //	}
 //}
 
-node {
+pipeline {
+	node {
    
    stages {
         stage("Build"){
@@ -32,4 +33,5 @@ node {
             }
         }
     }
+  }
 }
