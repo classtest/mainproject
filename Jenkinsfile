@@ -1,6 +1,6 @@
 //pipeline {
 	node {
-   		currentBuild.displayName = "The name."
-                currentBuild.description = "The best description."
+   		currentBuild.displayName = "${BUILD_NUMBER}_${GIT_BRANCH}_${GIT_REVISION}"
+            //    currentBuild.description = "The best description."
              }
 //}
