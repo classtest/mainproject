@@ -1,7 +1,7 @@
 //pipeline {
 //	agent {	node {
 	node {
-   		currentBuild.displayName = "${BUILD_NUMBER}"
+   		currentBuild.displayName = "testing"
             //    currentBuild.description = "The best description."
              }
 environment {
