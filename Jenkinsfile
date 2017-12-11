@@ -1,10 +1,9 @@
 pipeline {
-//    agent { node {
-//	}
+    agent { node { node { label ' ' } }
     options {
 	buildDiscarder(logRotator(numToKeepStr:'10'))
 	}
-//}
+}
 }
 node {
    GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
