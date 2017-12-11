@@ -12,8 +12,11 @@
 //}
 
 def commitSha() {
-    sh 'git rev-parse HEAD > commit'
-    def commit = readFile('commit').trim()
-    sh 'rm commit'
-    commit.substring(0, 8)
+//    sh 'git rev-parse HEAD > commit'
+//    def commit = readFile('commit').trim()
+//    sh 'rm commit'
+//    commit.substring(0, 8)
+
+	sh 'git log --oneline | head -1 | awk {'print $1'}'
+
 }
