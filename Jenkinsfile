@@ -13,7 +13,7 @@ stages {
     stage('Build') {
       steps {
 	script {
-	  echo 'Testing the jenkins'
+	  echo "GIT COMMIT is: ${GIT_COMMIT}"
     }
    }
   }
