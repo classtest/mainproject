@@ -7,12 +7,14 @@ pipeline {
 
     options {
 	buildDiscarder(logRotator(numToKeepStr:'10'))
-	}
+    }
 
 stages {
     stage('Build') {
       steps {
-	echo 'Testing the jenkins'
+	script {
+	  echo 'Testing the jenkins'
+    }
    }
   }
  }	
