@@ -1,5 +1,5 @@
-pipeline {
-    agent { node { label ' ' } }
+pipeline{
+    agent {node {label ''}}
 
     environment {
         GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
@@ -9,10 +9,11 @@ pipeline {
 	buildDiscarder(logRotator(numToKeepStr:'10'))
     }
 
-stages {
-    stage('Build') {
-      steps {
-	script {
+stages
+{
+    stage('Build'){
+      steps{
+	script{
 	  echo "GIT COMMIT is: ${GIT_COMMIT}"
     }
    }
