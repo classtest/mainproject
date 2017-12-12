@@ -1,25 +1,23 @@
 pipeline{
-    agent {node {label ''}}
+agent {node {label ''}}
+environment {
+   GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+}
 
-    environment {
-        GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-    }
-
-    options {
-	buildDiscarder(logRotator(numToKeepStr:'10'))
-    }
+//    options {
+//	buildDiscarder(logRotator(numToKeepStr:'10'))
+//    }
 
 stages
 {
-    stage('Build'){
-      steps{
-	script{
-	  echo "GIT COMMIT is: ${GIT_COMMIT}"
-    }
-   }
-  }
- }	
-
+stage('Build'){
+steps{
+script{
+echo "GIT COMMIT is: ${GIT_COMMIT}"
+}
+}
+}
+}	
 }
 
 node {
