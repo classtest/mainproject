@@ -14,13 +14,13 @@ stage('Build'){
 steps{
 script{
 echo "GIT COMMIT is: ${GIT_COMMIT}"
+currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
 }
 }
 }
-}	
-}
+}}
 
-node {
-   GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-   currentBuild.displayName = "${GIT_COMMIT.substring(0, 8)}"
-}
+//node {
+//   GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+//   currentBuild.displayName = "${GIT_COMMIT.substring(0, 8)}"
+//}
