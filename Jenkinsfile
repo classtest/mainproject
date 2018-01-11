@@ -24,3 +24,4 @@ currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
 //   GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
 //   currentBuild.displayName = "${GIT_COMMIT.substring(0, 8)}"
 //}
+// Suppress automatic SCM triggering
