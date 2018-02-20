@@ -35,14 +35,14 @@ options {
 
 stages
  {
- 	stage('Build'){
-   steps{
-     script{
- 	echo "GIT COMMIT is: ${GIT_COMMIT}"
- 	currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
-	}
-	}
-	}
- }
+ stage('Build'){
+ steps{
+ script{
+ echo "GIT COMMIT is: ${GIT_COMMIT}"
+ currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
+}
+}
+}
+}
 
 }
