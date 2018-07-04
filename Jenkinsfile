@@ -44,7 +44,9 @@ stages {
 
 stage("parameterizing"){
  steps{
+     sh './test.sh'
    script{
+
       if ("${params.Invparams}" == "Yes") {
           currentBuild.result = 'ABORTED'
           error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
