@@ -5,6 +5,20 @@ agent {node {label ''}}
    GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
  }
 
+
+parameters {
+
+choice(
+   name: 'Versions',
+   choices:"3.4\n4.4",
+   description: "Build for which version?" )
+}
+
+
+
+
+
+
 //    options {
 //	buildDiscarder(logRotator(numToKeepStr:'10'))
 //    }
@@ -41,6 +55,10 @@ stages
  script{
  echo "GIT COMMIT is: ${GIT_COMMIT}"
  currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
+
+ build(job: "msteam_test",
+     parameters:
+	[string(name: 'Versions', value: "${params.Versions}")])
 }
 }
 }
