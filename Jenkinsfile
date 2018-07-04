@@ -12,6 +12,11 @@ choice(
    name: 'Versions',
    choices:"3.4\n4.4",
    description: "Build for which version?" )
+
+choice(
+   name: 'Invparams', 
+   choices:"Yes\nNo", 
+   description: "Do you wanna use parameters?" )
 }
 
 
@@ -62,7 +67,18 @@ stages
 }
 }
 }
+
+stage("parameterizing") {
+  steps {
+  script {
+  if ("${params.Invparams}" == "Yes") {
+       currentBuild.result = 'ABORTED'
+       error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
+   }
+  }
+ }
 }
+
 //post {
 //        success {
 
