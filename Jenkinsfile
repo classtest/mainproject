@@ -1,6 +1,10 @@
 pipeline{
 agent {node {label ''}}
 
+ triggers {
+   cron('H/02 * * * *')
+ }
+
  environment {
    GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
  }
