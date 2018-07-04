@@ -27,6 +27,7 @@ agent {node {label ''}}
 //}
 // Suppress automatic SCM triggering
 
+
 options {
 	buildDiscarder(logRotator(daysToKeepStr: '',numToKeepStr:'1'))
         //disableConcurrentBuilds()
