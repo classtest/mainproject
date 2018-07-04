@@ -5,7 +5,6 @@ agent {node {label ''}}
    GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
  }
 
-
 parameters {
 
 choice(
@@ -19,7 +18,38 @@ choice(
    description: "Do you wanna use parameters?" )
 }
 
+options {
+   buildDiscarder(logRotator(daysToKeepStr: '',numToKeepStr:'1'))
+// disableConcurrentBuilds()
+   timestamps()
+}
 
+stages {
+ stage('Build'){
+   steps{
+     script{
+        echo "GIT COMMIT is: ${GIT_COMMIT}"
+        currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
+
+        build(job: "msteam_test",
+          parameters:
+              [string(name: 'Versions', value: "${params.Versions}")])
+  }
+ }
+}
+
+stage("parameterizing"){
+ steps{
+   script{
+      if ("${params.Invparams}" == "Yes") {
+          currentBuild.result = 'ABORTED'
+          error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
+     }
+    }
+   }
+  }
+ }
+}
 
 
 
@@ -28,17 +58,17 @@ choice(
 //	buildDiscarder(logRotator(numToKeepStr:'10'))
 //    }
 
- //stages
- //{
- //stage('Build'){
- //steps{
- //script{
- //echo "GIT COMMIT is: ${GIT_COMMIT}"
- //currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
- //}
- //}
- //}
- //}
+//stages
+//{
+//stage('Build'){
+//steps{
+//script{
+//echo "GIT COMMIT is: ${GIT_COMMIT}"
+//currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
+//}
+//}
+//}
+//}
 
 //node {
 //   GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
@@ -46,38 +76,39 @@ choice(
 //}
 // Suppress automatic SCM triggering
 
+//options {
+//	buildDiscarder(logRotator(daysToKeepStr: '',numToKeepStr:'1'))
+//        disableConcurrentBuilds()
+//        timestamps()
+//	}
 
-options {
-	buildDiscarder(logRotator(daysToKeepStr: '',numToKeepStr:'1'))
-        //disableConcurrentBuilds()
-        timestamps()
-	}
+//stages
+// {
+// stage('Build'){
+// steps{
+// script{
+// echo "GIT COMMIT is: ${GIT_COMMIT}"
+// currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
 
-stages
- {
- stage('Build'){
- steps{
- script{
- echo "GIT COMMIT is: ${GIT_COMMIT}"
- currentBuild.displayName = "Alpha_${GIT_COMMIT.substring(0, 8)}"
+// build(job: "msteam_test",
+//     parameters:
+//	[string(name: 'Versions', value: "${params.Versions}")])
+//}
+//}
+//}
 
- build(job: "msteam_test",
-     parameters:
-	[string(name: 'Versions', value: "${params.Versions}")])
-}
-}
-}
-
-stage("parameterizing") {
-  steps {
-  script {
-  if ("${params.Invparams}" == "Yes") {
-       currentBuild.result = 'ABORTED'
-       error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
-   }
-  }
- }
-}
+//stage("parameterizing") {
+//  steps {
+//  script {
+//  if ("${params.Invparams}" == "Yes") {
+//       currentBuild.result = 'ABORTED'
+//       error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
+//     }
+//    }
+//   }
+//  }
+// }
+//}
 
 //post {
 //        success {
@@ -89,5 +120,4 @@ stage("parameterizing") {
 
 //}
 //}
-
-}
+//}
