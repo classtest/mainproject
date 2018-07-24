@@ -1,6 +1,7 @@
 pipeline{
 agent {node {label ''}}
 
+
 // triggers {
 //   cron('H/02 * * * *')
 // }
